@@ -7,8 +7,12 @@ const Summary = ({ userAnswers }) => {
     (answer, index) => answer === QUESTIONS[index].answers[0],
   );
 
-  const skippedAnswersShare = Math.round((skippedAnswers / userAnswers) * 100);
-  const correctAnswersShare = Math.round((correctAnswers / userAnswers) * 100);
+  const skippedAnswersShare = Math.round(
+    (skippedAnswers.length / userAnswers.length) * 100,
+  );
+  const correctAnswersShare = Math.round(
+    (correctAnswers.length / userAnswers.length) * 100,
+  );
   const wrongAnswersShare = 100 - skippedAnswersShare - correctAnswersShare;
 
   return (

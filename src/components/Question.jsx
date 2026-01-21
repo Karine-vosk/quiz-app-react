@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import QuestionTimer from './QuestionTimer.jsx';
 import Answers from './Answers.jsx';
 import QUESTIONS from '../question.js';
@@ -60,6 +59,7 @@ const Question = ({ index, onSkipAnswer, onSelectAnswer }) => {
         selectedAnswer={answer.selectedAnswer}
         answerState={answerState}
         onSelect={handleSelectAnswer}
+        correctAnswer={QUESTIONS[index].answers[0]}
       />
     </div>
   );

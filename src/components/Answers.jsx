@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-const Answers = ({ answers, selectedAnswer, answerState, onSelect }) => {
+const Answers = ({ answers, selectedAnswer, answerState, onSelect, correctAnswer }) => {
   const shuffledAnswers = useRef();
   if (!shuffledAnswers.current) {
     shuffledAnswers.current = [...answers];
@@ -10,17 +10,19 @@ const Answers = ({ answers, selectedAnswer, answerState, onSelect }) => {
     <ul id='answers'>
       {shuffledAnswers.current.map((answer) => {
         const isSelected = selectedAnswer === answer;
+        const isCorrect = answer === correctAnswer;
         let cssClass = '';
 
         if (answerState === 'answered' && isSelected) {
           cssClass = 'selected';
         }
 
-        if (
-          (answerState === 'correct' || answerState === 'wrong') &&
-          isSelected
-        ) {
-          cssClass = answerState;
+        if (answerState === 'correct' || answerState === 'wrong') {
+          if (isSelected) {
+            cssClass = answerState;
+          } else if (isCorrect) {
+            cssClass = 'correct';
+          }
         }
 
         return (
